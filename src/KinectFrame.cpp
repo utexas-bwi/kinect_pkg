@@ -1,10 +1,11 @@
 #include <kinect_pkg/KinectFrame.h>
+#include <kinect_pkg/KinectWrapper.h>
 
 #include <iostream>
 
 using namespace std;
 
-KinectFrame::KinectFrame() {
+KinectFrame::KinectFrame(KinectWrapper *kw) : _kw(kw) {
     initCVMat(2160, 3840, CV_8UC4, "bgra");
     initCVMat(2160, 3840, CV_8UC3, "bgr");
     
@@ -29,9 +30,13 @@ void KinectFrame::initCVMat(int r, int c, int matType, std::string fieldName) {
     _cvMats[fieldName] = new cv::Mat(r, c, matType);
 }
 
+void KinectFrame::extractImages() {
+    _colorImage = _capture.get_color_image();
+    _depthImage = _capture.get_depth_image();
+}
+
 void KinectFrame::convertKinectImageToBGRA() {
-    k4a::image image = _capture.get_color_image();
-    uint8_t *buffer = image.get_buffer();
+    uint8_t *buffer = _colorImage.get_buffer();
     cv::Mat *m = _cvMats["bgra"];
     memcpy(m->data, buffer, 2160 * 3840 * 4);
 }
@@ -43,10 +48,6 @@ void KinectFrame::convertBGRAToBGR() {
 }
 
 void KinectFrame::computeDepthInfo() {
-    //_depthImage = _capture[i].get_depth_image();
-    //_wrappers.at(i)->transformation.depth_image_to_point_cloud(depth_image, K4A_CALIBRATION_TYPE_DEPTH, &_xyz_image);
-
-
-    //k4a::image colorImage = _capture[i].get_color_image();
-    //_wrappers.at(i)->transformation.color_image_to_depth_camera(depth_image, colorImage, &colorDepthImage);
+    _kw->_transformation.depth_image_to_point_cloud(_depthImage, K4A_CALIBRATION_TYPE_DEPTH, &_xyzImage);
+    _kw->_transformation.color_image_to_depth_camera(_depthImage, _colorImage, &_colorDepthImage);
 }

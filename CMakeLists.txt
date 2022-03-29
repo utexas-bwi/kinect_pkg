@@ -152,6 +152,7 @@ add_executable(kinectApril
   src/KFRImagePublish.cpp
   src/KinectFrame.cpp
   src/KinectWrapper.cpp
+  src/MSUtil.cpp
   src/kinectApril.cpp
   )
 

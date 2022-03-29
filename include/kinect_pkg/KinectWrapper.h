@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
+class KinectFrame;
 class KinectFrameRecipient;
 
 class KinectWrapper {
@@ -15,6 +16,7 @@ public:
     void update();
 
 protected:
+    friend class KinectFrame;
     KinectFrameRecipient &_kfr;
     
     k4a::device _device;

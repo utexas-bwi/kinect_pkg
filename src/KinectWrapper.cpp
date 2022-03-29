@@ -30,8 +30,9 @@ KinectWrapper::~KinectWrapper() {
 }
 
 void KinectWrapper::update() {
-    KinectFrame kf;
+    KinectFrame kf(this);
     _device.get_capture(&kf._capture, std::chrono::milliseconds(K4A_WAIT_INFINITE));
+    kf.extractImages();
     kf.convertKinectImageToBGRA();
     kf.convertBGRAToBGR();
     _kfr.receiveFrame(&kf);
