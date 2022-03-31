@@ -149,6 +149,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(kinectApril
   src/KFRAprilTag.cpp
+  src/KFRArray.cpp
+  src/KFRCloudPublish.cpp
   src/KFRImagePublish.cpp
   src/KinectFrame.cpp
   src/KinectWrapper.cpp

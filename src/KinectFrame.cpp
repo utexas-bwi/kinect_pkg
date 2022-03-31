@@ -8,14 +8,6 @@ using namespace std;
 KinectFrame::KinectFrame(KinectWrapper *kw) : _kw(kw) {
     initCVMat(2160, 3840, CV_8UC4, "bgra");
     initCVMat(2160, 3840, CV_8UC3, "bgr");
-    
-    _xyzImage =
-        k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM,
-            320, 288,
-            320 * 3 * sizeof(int16_t));
-    _colorDepthImage = k4a::image::create(K4A_IMAGE_FORMAT_COLOR_BGRA32,
-        320, 288,
-        320 * 4 * sizeof(int8_t));
 }
 
 KinectFrame::~KinectFrame() {
@@ -33,6 +25,14 @@ void KinectFrame::initCVMat(int r, int c, int matType, std::string fieldName) {
 void KinectFrame::extractImages() {
     _colorImage = _capture.get_color_image();
     _depthImage = _capture.get_depth_image();
+    
+    _xyzImage =
+        k4a::image::create(K4A_IMAGE_FORMAT_CUSTOM,
+            _depthImage.get_width_pixels(), _depthImage.get_height_pixels(),
+            _depthImage.get_width_pixels() * 3 * sizeof(int16_t));
+    _colorDepthImage = k4a::image::create(K4A_IMAGE_FORMAT_COLOR_BGRA32,
+        _depthImage.get_width_pixels(), _depthImage.get_height_pixels(),
+        _depthImage.get_width_pixels() * 4 * sizeof(int8_t));
 }
 
 void KinectFrame::convertKinectImageToBGRA() {

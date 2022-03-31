@@ -35,5 +35,6 @@ void KinectWrapper::update() {
     kf.extractImages();
     kf.convertKinectImageToBGRA();
     kf.convertBGRAToBGR();
+    kf.computeDepthInfo();
     _kfr.receiveFrame(&kf);
 }
