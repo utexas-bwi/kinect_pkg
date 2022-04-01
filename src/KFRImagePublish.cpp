@@ -12,7 +12,7 @@ KFRImagePublish::KFRImagePublish(ros::NodeHandle &nh) :
 KFRImagePublish::~KFRImagePublish() {}
 
 void KFRImagePublish::receiveFrame(KinectFrame *frame) {
-    cv::Mat *m = frame->_cvMats["bgr"];
+    cv::Mat *m = frame->_cvMats["bgr_april"];
     sensor_msgs::ImagePtr msg =
         cv_bridge::CvImage(std_msgs::Header(), "bgr8", *m).toImageMsg();
     //ROS_INFO_STREAM("w: " << m->cols << "   h:  " << m->rows);

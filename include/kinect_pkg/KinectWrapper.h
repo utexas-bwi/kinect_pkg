@@ -2,6 +2,9 @@
 #define KINECT_WRAPPER_H
 
 #include <k4a/k4a.hpp>
+
+#include <Eigen/Eigen>
+
 #include <vector>
 #include <string>
 
@@ -18,6 +21,7 @@ public:
 protected:
     friend class KinectFrame;
     KinectFrameRecipient &_kfr;
+    Eigen::MatrixXd _intrinsics;
     
     k4a::device _device;
     k4a_device_configuration_t _config;

@@ -5,6 +5,8 @@
 
 #include <opencv2/opencv.hpp>
 
+#include <Eigen/Eigen>
+
 #include <string>
 #include <vector>
 
@@ -31,6 +33,7 @@ public:
 
     std::map<std::string, cv::Mat *> _cvMats;
     k4a::image _colorImage, _depthImage, _xyzImage, _colorDepthImage;
+    Eigen::MatrixXd _cornerDetections;
 };
 
 #endif

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-KinectWrapper::KinectWrapper(KinectFrameRecipient &kfr) : _kfr(kfr) {
+KinectWrapper::KinectWrapper(KinectFrameRecipient &kfr) : _kfr(kfr), _intrinsics(3,3) {
     _config.color_format = K4A_IMAGE_FORMAT_COLOR_BGRA32;
     _config.color_resolution = K4A_COLOR_RESOLUTION_2160P;
     _config.depth_mode = K4A_DEPTH_MODE_NFOV_UNBINNED;
@@ -20,6 +20,17 @@ KinectWrapper::KinectWrapper(KinectFrameRecipient &kfr) : _kfr(kfr) {
     _device = k4a::device::open(0);
     _sensor_calibration = _device.get_calibration(_config.depth_mode, _config.color_resolution);
     _transformation = k4a::transformation(_sensor_calibration);
+    _intrinsics(0,0) = _sensor_calibration.color_camera_calibration.intrinsics.parameters.param.fx;
+    _intrinsics(1,1) = _sensor_calibration.color_camera_calibration.intrinsics.parameters.param.fy;
+
+    _intrinsics(0,2) = _sensor_calibration.color_camera_calibration.intrinsics.parameters.param.cx;
+    _intrinsics(1,2) = _sensor_calibration.color_camera_calibration.intrinsics.parameters.param.cy;
+    _intrinsics(2,2) = 1;
+
+    _intrinsics(0,1) = 0;
+    _intrinsics(1,0) = 0;
+    _intrinsics(2,0) = 0;
+    _intrinsics(2,1) = 0;
 
     _device.start_cameras(&_config);
 }

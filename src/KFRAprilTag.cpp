@@ -1,4 +1,5 @@
 #include <kinect_pkg/KFRAprilTag.h>
+#include <kinect_pkg/KinectFrame.h>
 #include <apriltag/apriltag.h>
 #include <apriltag/tagStandard41h12.h>
 #include <apriltag/tag36h11.h>
@@ -12,7 +13,7 @@ KFRAprilTag::KFRAprilTag(){
 }
 
 void KFRAprilTag::receiveFrame(KinectFrame *frame) {
-    //mkp._corner_detections[i]["apriltag"] = detectCorners(mkp._cvMats["rgb"][i]);
+    frame->_cornerDetections = detectCorners(*frame->_cvMats["bgr"]);
 }
 
 Eigen::MatrixXd KFRAprilTag::detectCorners(cv::Mat &img){

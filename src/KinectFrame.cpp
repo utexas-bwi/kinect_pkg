@@ -8,6 +8,7 @@ using namespace std;
 KinectFrame::KinectFrame(KinectWrapper *kw) : _kw(kw) {
     initCVMat(2160, 3840, CV_8UC4, "bgra");
     initCVMat(2160, 3840, CV_8UC3, "bgr");
+    initCVMat(2160, 3840, CV_8UC3, "bgr_april");
 }
 
 KinectFrame::~KinectFrame() {
