@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(kinect_pkg)
 
-set(CMAKE_BUILD_TYPE Debug)
-#set(CMAKE_BUILD_TYPE Release)
+#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
 
 #set(APRIL_TAG_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 #add_subdirectory (share/apriltag apriltag/build)
@@ -154,6 +154,7 @@ add_executable(kinectApril
   src/KFRArray.cpp
   src/KFRCloudPublish.cpp
   src/KFRHomography.cpp
+  src/KFRHomographyRender.cpp
   src/KFRImagePublish.cpp
   src/KinectFrame.cpp
   src/KinectWrapper.cpp

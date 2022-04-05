@@ -11,6 +11,7 @@
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "random": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "limits": "cpp"
     }
 }

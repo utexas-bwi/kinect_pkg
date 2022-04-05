@@ -33,7 +33,8 @@ public:
 
     std::map<std::string, cv::Mat *> _cvMats;
     k4a::image _colorImage, _depthImage, _xyzImage, _colorDepthImage;
-    Eigen::MatrixXd _cornerDetections;
+    bool _tagDetected;
+    Eigen::MatrixXd _cornerDetections, _homography;
 };
 
 #endif
