@@ -10,6 +10,7 @@
 
 class KinectFrame;
 class KinectFrameRecipient;
+class KFRHomToRT;
 
 class KinectWrapper {
 public:
@@ -20,8 +21,10 @@ public:
 
 protected:
     friend class KinectFrame;
+    friend class KFRHomToRT;
+
     KinectFrameRecipient &_kfr;
-    Eigen::MatrixXd _intrinsics;
+    Eigen::MatrixXd _intrinsics, _intrinsicsInverse;
     
     k4a::device _device;
     k4a_device_configuration_t _config;

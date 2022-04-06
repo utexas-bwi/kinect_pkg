@@ -12,6 +12,7 @@
         "unordered_set": "cpp",
         "random": "cpp",
         "core": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "complex": "cpp"
     }
 }

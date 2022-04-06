@@ -32,6 +32,8 @@ KinectWrapper::KinectWrapper(KinectFrameRecipient &kfr) : _kfr(kfr), _intrinsics
     _intrinsics(2,0) = 0;
     _intrinsics(2,1) = 0;
 
+    _intrinsicsInverse = _intrinsics.inverse();
+
     _device.start_cameras(&_config);
 }
 

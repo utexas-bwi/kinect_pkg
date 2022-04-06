@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
     KFRCloudPublish kfrcp(nh);
     KFRImagePublish kfrip(nh);
     KFRAprilTag kfraprilTag;
-    KFRAprilCorners kfraprilCorners;
+    KFRAprilCorners kfraprilCorners(nh);
     KFRHomography kfrHomography;
     KFRHomographyRender kfrHomographyRender(nh);
     kfra.addKFR(&kfraprilTag);
