@@ -157,6 +157,7 @@ add_executable(kinectApril
   src/KFRHomographyRender.cpp
   src/KFRHomToRT.cpp
   src/KFRImagePublish.cpp
+  src/KFRPosePublish.cpp
   src/KinectFrame.cpp
   src/KinectWrapper.cpp
   src/MSUtil.cpp

@@ -5,7 +5,9 @@
 #include <kinect_pkg/KFRCloudPublish.h>
 #include <kinect_pkg/KFRHomography.h>
 #include <kinect_pkg/KFRHomographyRender.h>
+#include <kinect_pkg/KFRHomToRT.h>
 #include <kinect_pkg/KFRImagePublish.h>
+#include <kinect_pkg/KFRPosePublish.h>
 
 #include <ros/ros.h>
 
@@ -19,12 +21,16 @@ int main(int argc, char **argv) {
     KFRAprilCorners kfraprilCorners(nh);
     KFRHomography kfrHomography;
     KFRHomographyRender kfrHomographyRender(nh);
+    KFRHomToRT kfrHomToRT;
+    KFRPosePublish kfrPosePublish(nh);
     kfra.addKFR(&kfraprilTag);
     kfra.addKFR(&kfraprilCorners);
     kfra.addKFR(&kfrHomography);
     kfra.addKFR(&kfrHomographyRender);
+    kfra.addKFR(&kfrHomToRT);
     kfra.addKFR(&kfrcp);
     kfra.addKFR(&kfrip);
+    kfra.addKFR(&kfrPosePublish);
     KinectWrapper kw(kfra);
 
     ros::Rate loop_rate(15);

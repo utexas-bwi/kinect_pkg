@@ -12,22 +12,22 @@ using namespace Eigen;
 using namespace std;
 
 KFRHomography::KFRHomography() : _modelChessboard(2,4), _x(12,9) {
+    double dist = 1.0;
     //First point, lower left
-    _modelChessboard(0,0) = -1;
-    _modelChessboard(1,0) =  1;
+    _modelChessboard(0,0) = -dist;
+    _modelChessboard(1,0) =  dist;
 
     //Second point, lower right
-    _modelChessboard(0,1) =  1;
-    _modelChessboard(1,1) =  1;
+    _modelChessboard(0,1) =  dist;
+    _modelChessboard(1,1) =  dist;
 
     //Third point, upper right
-    _modelChessboard(0,2) =  1;
-    _modelChessboard(1,2) = -1;
+    _modelChessboard(0,2) =  dist;
+    _modelChessboard(1,2) = -dist;
 
     //Fourth point, upper left
-    _modelChessboard(0,3) = -1;
-    _modelChessboard(1,3) = -1;
-
+    _modelChessboard(0,3) = -dist;
+    _modelChessboard(1,3) = -dist;
 }
 
 KFRHomography::~KFRHomography() {}
