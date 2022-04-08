@@ -4,10 +4,6 @@ project(kinect_pkg)
 #set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_BUILD_TYPE Release)
 
-#set(APRIL_TAG_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
-#add_subdirectory (share/apriltag apriltag/build)
-add_subdirectory (share/apriltag)
-
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -148,20 +144,15 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(kinectApril
-  src/KFRAprilTag.cpp
-  src/KFRAprilCorners.cpp
+add_executable(kinect
   src/KFRArray.cpp
   src/KFRCloudPublish.cpp
-  src/KFRHomography.cpp
-  src/KFRHomographyRender.cpp
-  src/KFRHomToRT.cpp
   src/KFRImagePublish.cpp
   src/KFRPosePublish.cpp
   src/KinectFrame.cpp
   src/KinectWrapper.cpp
   src/MSUtil.cpp
-  src/kinectApril.cpp
+  src/kinect.cpp
   )
 
 ## Rename C++ executable without prefix
@@ -175,10 +166,9 @@ add_executable(kinectApril
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(kinectApril
+target_link_libraries(kinect
   ${catkin_LIBRARIES}
   ${OpenCV_LIBRARIES}
-  apriltag
   k4a
 )
 
