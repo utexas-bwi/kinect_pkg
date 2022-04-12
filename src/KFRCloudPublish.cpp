@@ -12,7 +12,7 @@ KFRCloudPublish::~KFRCloudPublish() {}
 
 void KFRCloudPublish::receiveFrame(KinectFrame *frame) {
     sensor_msgs::PointCloud2 pointCloud;
-    pointCloud.header.frame_id = "depth_camera_link";
+    pointCloud.header.frame_id = "azure_kinect/camera_body";
     fillColorPointCloud(frame->_xyzImage, frame->_colorDepthImage, &pointCloud);
     _pub.publish(pointCloud);
 }

@@ -1,0 +1,18 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+Updated by Justin Hart
+-->
+
+<launch>
+  <arg name="tf_prefix"         default="azure_kinect/" />                       <!-- Prefix added to tf frame IDs. It typically contains a trailing '_' unless empty. -->
+  <!--<arg name="overwrite_robot_description" default="true" />-->         <!-- Flag to publish a standalone azure_description instead of the default robot_descrition parameter-->
+
+  <param name="robot_description"
+    command="xacro $(find kinect_pkg)/urdf/azure_kinect.urdf.xacro tf_prefix:=$(arg tf_prefix)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+  <node pkg="kinect_pkg" type="kinectApril" name="kinectApril" output="screen">
+  </node>
+</launch>

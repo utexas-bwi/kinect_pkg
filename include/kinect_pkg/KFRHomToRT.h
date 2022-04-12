@@ -3,11 +3,19 @@
 
 #include "kinect_pkg/KinectFrameRecipient.h"
 
+#include <Eigen/Eigen>
+
 #include <vector>
 
+class KFRHomography;
+
 class KFRHomToRT : public KinectFrameRecipient {
+protected:
+    KFRHomography &_hom;
+    Eigen::MatrixXd _modelChessboard;
+
 public:
-    KFRHomToRT();
+    KFRHomToRT(KFRHomography &hom);
     ~KFRHomToRT();
 
     void receiveFrame(KinectFrame *frame);

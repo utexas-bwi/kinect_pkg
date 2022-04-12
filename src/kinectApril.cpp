@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     KFRAprilCorners kfraprilCorners(nh);
     KFRHomography kfrHomography;
     KFRHomographyRender kfrHomographyRender(nh);
-    KFRHomToRT kfrHomToRT;
+    KFRHomToRT kfrHomToRT(kfrHomography);
     KFRPosePublish kfrPosePublish(nh);
     kfra.addKFR(&kfraprilTag);
     kfra.addKFR(&kfraprilCorners);

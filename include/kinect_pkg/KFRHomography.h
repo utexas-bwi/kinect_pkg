@@ -7,6 +7,7 @@
 
 class KFRHomography : public KinectFrameRecipient {
 protected:
+    friend class KFRHomToRT;
     Eigen::MatrixXd _modelChessboard;
     Eigen::MatrixXd _x;
 
